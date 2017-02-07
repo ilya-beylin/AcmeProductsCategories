@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class='container'>
+  <div class='row'>
+    <div class='col-sm-6'>
+
+      <h2>Category: {{title}}</h2>
+
+      <a href = "/"> Back to Categories</a>
+
+      <!-- This button moves to the /categories/:id path  -->
+      <form class='well' action='/category/{{category.id}}' method='POST'>
+        <div class='form-group'>
+          <input class='form-control' name='name' placeholder='add a product...'/>
+        </div>
+        <button class='btn btn-primary'><span class='glyphicon glyphicon-save'></span>Save</button>
+      </form>
+      <!-- This is where an unordered list containing the categories goes  -->
+
+      <ul class='list-group'> {% for product in products %}
+        <li class='list-group-item'>
+          <h4>{{product.name}}</h4>
+          <!-- This is where individual products with delete buttons go  -->
+          <div class='pull-right'>
+            <form style='display:inline' action='/category/{{category.id}}/{{product.id}}?_method=DELETE' method='POST'>
+              <button class='btn btn-warning'>
+                <span class='glyphicon glyphicon-trash'></span>
+                Delete
+              </button>
+            </form>
+          </div>
+          <br clear='all' />
+        </li>        {% endfor %}
+      </ul>
+    </div>
+
+
+    <div class='col-sm-6'>
+      <h3>Data:</h3>
+      <pre>
+      <!-- This is where a representation of the categories and products goes -->
+      [      {% for category in categories %}
+        {
+          "id": {{category.id}},
+          "name": {{category.name}},
+          "products": [  {% for product in category.products %}
+            {
+              "id": {{product.id}},
+              "name": {{product.name}}
+            }  {% endfor %}
+          ]
+        }      {% endfor %}
+      ]
+      </pre>
+    </div>
+
+  </div>
+</div>
+
+{% endblock %}

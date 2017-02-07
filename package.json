@@ -1,0 +1,23 @@
+{
+  "name": "AcmeProductsCategoriesJS",
+  "version": "1.0.0",
+  "description": "",
+  "main": "db.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon  server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.1",
+    "fs": "0.0.1-security",
+    "method-override": "^2.3.7",
+    "morgan": "^1.8.0",
+    "nodemon": "^1.11.0",
+    "nunjucks": "^3.0.0",
+    "path": "^0.12.7"
+  }
+}
