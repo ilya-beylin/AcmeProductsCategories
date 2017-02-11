@@ -6,7 +6,7 @@ const nunjucks = require('nunjucks');
 const bodyParser = require('body-parser');
 const db = require('./db');
 const path = require('path');
-const routes = require('./routes/categories.js');
+const routes = require('./routes/categories.js');//call this categoriesRoutes
 
 
 const app = express(); // creates an instance of the express application
@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 /* Listen on port 3000 */
 var portSetting = process.env.PORT || 3000;
 app.listen(portSetting, function(){
-  console.log("Listening on port " + portSetting);
+  console.log("Listening on port " + portSetting);//use backticks
 });
 
 /* Create logger */
@@ -37,4 +37,4 @@ app.use(logger('combined', {stream:accessLogStream}));
 
 app.use(methodOverride('_method'));
 app.use('/node_modules', express.static('./node_modules'));
-app.use('/', routes);
+app.use('/', routes);//i would put the home route in this file and do app.use('/categories', categoriesRoutes);
