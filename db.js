@@ -1,6 +1,15 @@
 var _categories = [];
-var index = 0;
+var index = 0;//not crazy about this.. would rather you used reduce to get the next id
+/*
+//think about doing this instead...
+const getCategories = ()=> {//method here};
+const getCategory = (id)=> { //method here };
 
+module.exports {
+    getCategories,
+    getCategory
+};
+*/
 var db = {
 
 getCategories : function (){
@@ -16,6 +25,7 @@ getCategory: function(id){
 },
 
 insertCategory: function (name){
+  //what exactly is product_index-- you should be able to do this without it
   _categories.push({id: index++, name: name, products: [], product_index: 0})
 },
 
@@ -28,11 +38,12 @@ deleteCategory: function (id){
 },
 
 insertProduct: function (category_id, product_name){
-  var ctg = this.getCategory(category_id);
-  ctg.products.push({name: product_name, id: ctg.product_index++});
+  var ctg = this.getCategory(category_id);//naming ctg should be called category
+  ctg.products.push({name: product_name, id: ctg.product_index++});//use reduce to get id
 },
 
 deleteProduct: function (category_id, product_id){
+  //you're only going to delete one product... you could probably just filter 
   var ctg = this.getCategory(category_id);
   for(var i = 0; i < ctg.products.length; i++){
       if(ctg.products[i].id == product_id){
@@ -44,7 +55,7 @@ deleteProduct: function (category_id, product_id){
 };
 
 
-db.insertCategory("Sports");
+db.insertCategory("Sports");//how about having these methods return the category.. then you can use the ide below..
 db.insertCategory("Arts");
 db.insertCategory("Countries");
 
